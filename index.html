@@ -3,22 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellcom to my website</title>
+    <title>个人主页 | WhichChow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f4f4f9; }
-        .card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 400px; }
-        h1 { color: #333; }
-        p { color: #666; }
-        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
-        .btn:hover { background: #0056b3; }
+        :root {
+            --primary-bg: #0f172a;
+            --accent-color: #38bdf8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #f1f5f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 背景装饰球 */
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-color);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.2;
+            animation: move 10s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-50px, -50px); }
+            to { transform: translate(100px, 100px); }
+        }
+
+        /* 核心卡片 */
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .tagline { color: var(--accent-color); font-weight: 300; margin-bottom: 2rem; font-size: 0.9rem; }
+
+        /* 按钮列表 */
+        .links { display: flex; flex-direction: column; gap: 15px; }
+
+        .link-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .social-footer {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* 简单的打字机效果脚本 */
+        #typing { border-right: 2px solid var(--accent-color); padding-right: 5px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Hi I'm Which Chow</h1>
-        <p>Wellcom。</p>
-        <p>This is my first website here。</p>
-        <a href="mailto:whichchow@7x-networks.com" class="btn">contact me</a>
+    <div class="blob"></div>
+    
+    <div class="container">
+        <img src="https://ui-avatars.com/api/?name=W&background=38bdf8&color=fff&size=128" alt="Avatar" class="profile-img">
+        
+        <h1>Which Chow</h1>
+        <div class="tagline"><span id="typewriter"></span></div>
+
+        <div class="links">
+            <a href="#" class="link-item">🚀 我的项目 (Projects)</a>
+            <a href="#" class="link-item">📝 博客文章 (Blog)</a>
+            <a href="mailto:contact@whichchow.com" class="link-item">📧 联系我 (Contact)</a>
+        </div>
+
+        <div class="social-footer">
+            <span>GitHub</span> | <span>Twitter</span> | <span>LinkedIn</span>
+        </div>
     </div>
+
+    <script>
+        // 一个简单的打字机特效
+        const text = "探索科技与餐饮的无限可能...";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        typeWriter();
+    </script>
 </body>
 </html>
